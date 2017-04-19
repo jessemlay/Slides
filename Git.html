@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>Git</title>
+
+    <!-- Required stylesheet -->
+    <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+    <!-- Extension CSS files go here. Remove or add as needed. -->
+    <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+    <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+    <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+    <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+    <!-- Basic black and white print styles -->
+    <link rel="stylesheet" media="print" href="core/print.css">
+    <!-- Syntax highlight -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+    <!-- Required Modernizr file -->
+    <script src="modernizr.custom.js"></script>
+</head>
+
+<body>
+    <div class="deck-container">
+
+        <!-- Begin slides. Just make elements with a class of slide. -->
+
+        <section class="slide">
+            <table>
+                <tr>
+                    <h2>Git basics</h2>
+                </tr>
+                <tr>
+                    <h2>All the things</h2>
+                </tr>
+                <tr><img src="./images/k6lig.jpg" /></tr>
+            </table>
+        </section>
+
+        <section class="slide">
+            <h2>What is git?</h2>
+            <p>Git is a distributed revision control system.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Git features</h2>
+            <ul>
+                <li>Every developer has there own copy</li>
+                <li>Changes can be stored locally until your read to commit</li>
+                <li>A repo can be tagged creating a snapshot of the current state of the repo</li>
+                <li>Branching is lightweight and the recommended way to work on changes</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Workflow</h2>
+            <p>Git is very flexible and can be used in a variety of ways, but lets look at a simple workflow for small teams</p>
+
+            <p>Two developers are task with working on a new feature in the same repository, for this example we will call them
+                John and Marry</p>
+        </section>
+
+        <section class="slide">
+            <h2>Cloning</h2>
+            <p>You can thinking of cloning as a SVN Checkout, except you grab a independent repo you can work on </p>
+            <em>git clone http://jlay@localhost:8080/gitserver/SMARTTagDocs.git</em>
+            <em>When you clone a repo git will automatically create a link to the origin so you can push upstream</em>
+
+        </section>
+
+        <section class="slide">
+            <h2>Local Repositories</h2>
+            <p>John and Mary both clone the repo and can now work independently on their respective features</p>
+            <pre>
+            <em>
+git status # View the state of the repo
+git add <some-file> # Stage a file
+git commit # Commit a file</some-file>
+            </em>
+        </pre>
+
+            <b>Note: this will only commit to the local repo and will not affect the main repository</b>
+        </section>
+
+        <section class="slide">
+            <h2>Pushing</h2>
+            <p>Pushing is like a SVN Check-in. John has finish his feature and is ready to commit to the main branch</p>
+
+            <code>git push origin master</code>
+            <br/>
+            <br/>
+            <p> This will push his changes to the main repository</p>
+
+            <p>Mary has finish her feature and pushes to master</p>
+            <code>git push origin master</code>
+            <br/>
+            <br/>
+            <p> Since her local history has diverged from the central repository Git will refuse the commit. Mary must rebase
+                on top of Johns commits. The important part of this command is the --rebase which tell Git to to move all
+                of Mary's commites to the tip of the master brance keeping a linear commit log</p>
+            <code>git pull --rebase origin master</code>
+        </section>
+
+        <section class="slide">
+            <h2>Feature Branches</h2>
+            <img src="./images/01.svg" />
+            <p>The previous workflow was a very basic example</p>
+
+            <h3>Feature branches</h3>
+            <p>Creating a branch per feature allows developer to work independently of the master or develop branch</p>
+            <p>Once the feature is ready a pull request can be made allowing the reviewer to accept the request or provide comment
+                and reject it</p>
+        </section>
+
+        <section class="slide">
+            <h2>How It Works</h2>
+            <p>The Feature Branch Workflow still uses a central repository, and master still represents the official project
+                history. But, instead of committing directly on their local master branch, developers create a new branch
+                every time they start work on a new feature. Feature branches should have descriptive names, like animated-menu-items
+                or issue-#1061. The idea is to give a clear, highly-focused purpose to each branch.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Git Submodules</h2>
+            <p>Our current repository is one single repo, which is nice cause when you update it will grab everything. However
+                it can also show changes not part of the code you are working on and do not want to commit. Git modules allow
+                you to link one repo to another. For instance you could set SMART_Library as a submodule to Admin Portal</p>
+            <iframe width='1080' height='760' src="https://www.youtube.com/embed/8Z4Cmhji_FQ" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+
+        <section class="slide">
+
+            <h2>Where to go from here</h2>
+            <ul>
+                <li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow">Centralized WorkFlow</a></li>
+                <li><a href="https://confluence.atlassian.com/display/BITBUCKET/Using+Git+branches">Using Git Branches</a></li>
+                <li><a href="http://nvie.com/posts/a-successful-git-branching-model/">Gitflow Workflow</a></li>
+                <li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Feature Branch Workflow</a></li>
+            </ul>
+
+
+
+
+
+        </section>
+
+        <!-- End slides. -->
+
+        <!-- Begin extension snippets. Add or remove as needed. -->
+
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+            <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        </div>
+
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span> /
+            <span class="deck-status-total"></span>
+        </p>
+
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+            <label for="goto-slide">Go to slide:</label>
+            <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+            <datalist id="goto-datalist"></datalist>
+            <input type="submit" value="Go">
+        </form>
+
+        <!-- End extension snippets. -->
+    </div>
+
+    <!-- Required JS files. -->
+    <script src="jquery.min.js"></script>
+    <script src="core/deck.core.js"></script>
+
+    <!-- Extension JS files. Add or remove as needed. -->
+    <script src="extensions/menu/deck.menu.js"></script>
+    <script src="extensions/goto/deck.goto.js"></script>
+    <script src="extensions/status/deck.status.js"></script>
+    <script src="extensions/navigation/deck.navigation.js"></script>
+    <script src="extensions/scale/deck.scale.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+        $(function () {
+            $.deck('.slide');
+        });
+    </script>
+</body>
+
+</html>
