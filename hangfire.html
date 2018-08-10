@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -30,17 +31,18 @@
     <!-- Required Modernizr file -->
     <script src="modernizr.custom.js"></script>
 </head>
+
 <body>
-<div class="deck-container">
+    <div class="deck-container">
 
-    <!-- Begin slides. Just make elements with a class of slide. -->
+        <!-- Begin slides. Just make elements with a class of slide. -->
 
-    <section class="slide">
-        <h1>Hangfire basics</h1>
-    </section>
+        <section class="slide">
+            <h1>hangfire</h1>
+        </section>
 
-    <section class="slide">
-        <h2>Setup</h2>
+        <section class="slide">
+            <h2>Setup</h2>
             <p>For mvc hangfire is configure via the Startup.cs Configuration method</p>
             <pre><code>
 using Hangfire;
@@ -55,21 +57,26 @@ public void Configuration(IAppBuilder app)
     app.UseHangfireServer();
 }
         </code></pre>
-    </section>
+        </section>
 
-    <section class="slide">
-        <h2>Hangire dashboard</h2>
-        <p>You can open the dash board by navigating to <i>http://your-site/hangfire</i>. I use this for seeing job status and debugging issues with jobs</p>
-        <p>Every running instance will create a server with queues</p>
-        <img src="images/servers.png" alt="">
-        <p><em style="color: red;">Its important to note if your job uses local resource they will need to be accessible from the server the jobs is running on</em></p>
-    </section>
+        <section class="slide">
+            <h2>Hangire dashboard</h2>
+            <p>You can open the dash board by navigating to
+                <i>http://your-site/hangfire</i>. I use this for seeing job status and debugging issues with jobs</p>
+            <p>Every running instance will create a server with queues</p>
+            <img src="images/servers.png" alt="">
+            <p>
+                <em style="color: red;">Its important to note if your job uses local resource they will need to be accessible from the server the
+                    jobs is running on</em>
+            </p>
+        </section>
 
-    <section class="slide">
-        <h2>Queues</h2>
-        <p>Hangfire can process multiple queues. In order to assure your job is process on the same queue as your server include a options object when setting up hangfire in the Startup.cs</p>
-        <p>I've setup my instance with a preprocessor to create a different queue based on development or production</p>
-        <pre><code>
+        <section class="slide">
+            <h2>Queues</h2>
+            <p>Hangfire can process multiple queues. In order to assure your job is process on the same queue as your server
+                include a options object when setting up hangfire in the Startup.cs</p>
+            <p>I've setup my instance with a preprocessor to create a different queue based on development or production</p>
+            <pre><code>
 #if DEBUG
 
             // debug mode use dashboard and set queue to a unique queue
@@ -97,20 +104,20 @@ public void Configuration(IAppBuilder app)
             app.UseHangfireServer(options);
 #endif
         </code></pre>
-    </section>
+        </section>
 
-    <section class="slide">
-        <h2>Jobs</h2>
-        <p>The hangfire library allow us to process jobs in the background safe from any app domain shutdowns</p>
-        <p>Jobs Type:</p>
-        <ul>
-            <li>background jobs - simple fire and forget jobs that run on either the default queue or one you specify</li>
-            <li>delay jobs - same as background job except with a set delay</li>
-            <li>recurrent tasks - scheduled jobs great for clean up tasks</li>
-        </ul>
+        <section class="slide">
+            <h2>Jobs</h2>
+            <p>The hangfire library allow us to process jobs in the background safe from any app domain shutdowns</p>
+            <p>Jobs Type:</p>
+            <ul>
+                <li>background jobs - simple fire and forget jobs that run on either the default queue or one you specify</li>
+                <li>delay jobs - same as background job except with a set delay</li>
+                <li>recurrent tasks - scheduled jobs great for clean up tasks</li>
+            </ul>
 
-        <p>Running jobs on a specific queue is a simple as provinding the Queue("") attribute</p>
-        <pre><code>
+            <p>Running jobs on a specific queue is a simple as provinding the Queue("") attribute</p>
+            <pre><code>
 #if DEBUG
     public const string queue = "development";
 #else
@@ -122,19 +129,19 @@ public void DummyJob()
     System.Threading.Thread.Sleep(500);
 }
         </code></pre>
-    </section>
+        </section>
 
-    <section class="slide">
-        <h1>SignalR</h1>
-    </section>
+        <section class="slide">
+            <h1>SignalR</h1>
+        </section>
 
-    <section class="slide">
-        <h2>Setup</h2>
-        <p>SignalR is a websockets framework build for .Net</p>
-        <p>The most common use of SignalR is using the Hubs</p>
-        <p>Hubs provide a abstraction for groups, topics and defining methods that both server and client can use</p>
+        <section class="slide">
+            <h2>Setup</h2>
+            <p>SignalR is a websockets framework build for .Net</p>
+            <p>The most common use of SignalR is using the Hubs</p>
+            <p>Hubs provide a abstraction for groups, topics and defining methods that both server and client can use</p>
 
-        <pre><code>
+            <pre><code>
 // Server
 public class NotificationHub : Hub
 {
@@ -169,53 +176,54 @@ notificationHub.client.sendNotificationMessage = function (message) {
     // message received use it!
 };
         </code></pre>
-    </section>
+        </section>
 
-    <!-- End slides. -->
+        <!-- End slides. -->
 
-    <!-- Begin extension snippets. Add or remove as needed. -->
+        <!-- Begin extension snippets. Add or remove as needed. -->
 
-    <!-- deck.navigation snippet -->
-    <div aria-role="navigation">
-        <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-        <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+            <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        </div>
+
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span>
+            /
+            <span class="deck-status-total"></span>
+        </p>
+
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+            <label for="goto-slide">Go to slide:</label>
+            <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+            <datalist id="goto-datalist"></datalist>
+            <input type="submit" value="Go">
+        </form>
+
+        <!-- End extension snippets. -->
     </div>
 
-    <!-- deck.status snippet -->
-    <p class="deck-status" aria-role="status">
-        <span class="deck-status-current"></span>
-        /
-        <span class="deck-status-total"></span>
-    </p>
+    <!-- Required JS files. -->
+    <script src="jquery.min.js"></script>
+    <script src="core/deck.core.js"></script>
 
-    <!-- deck.goto snippet -->
-    <form action="." method="get" class="goto-form">
-        <label for="goto-slide">Go to slide:</label>
-        <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-        <datalist id="goto-datalist"></datalist>
-        <input type="submit" value="Go">
-    </form>
+    <!-- Extension JS files. Add or remove as needed. -->
+    <script src="extensions/menu/deck.menu.js"></script>
+    <script src="extensions/goto/deck.goto.js"></script>
+    <script src="extensions/status/deck.status.js"></script>
+    <script src="extensions/navigation/deck.navigation.js"></script>
+    <script src="extensions/scale/deck.scale.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 
-    <!-- End extension snippets. -->
-</div>
-
-<!-- Required JS files. -->
-<script src="jquery.min.js"></script>
-<script src="core/deck.core.js"></script>
-
-<!-- Extension JS files. Add or remove as needed. -->
-<script src="extensions/menu/deck.menu.js"></script>
-<script src="extensions/goto/deck.goto.js"></script>
-<script src="extensions/status/deck.status.js"></script>
-<script src="extensions/navigation/deck.navigation.js"></script>
-<script src="extensions/scale/deck.scale.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-
-<!-- Initialize the deck. You can put this in an external file if desired. -->
-<script>
-    $(function () {
-        $.deck('.slide');
-    });
-</script>
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+        $(function () {
+            $.deck('.slide');
+        });
+    </script>
 </body>
+
 </html>

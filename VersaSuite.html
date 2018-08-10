@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>VersaSuite</title>
+
+    <!-- Required stylesheet -->
+    <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+    <!-- Extension CSS files go here. Remove or add as needed. -->
+    <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+    <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+    <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+    <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+    <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+    <!-- Basic black and white print styles -->
+    <link rel="stylesheet" media="print" href="core/print.css">
+    <!-- Syntax highlight -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+    <!-- Required Modernizr file -->
+    <script src="modernizr.custom.js"></script>
+    <!-- custom styles -->
+    <link rel="stylesheet" media="print" href="core/custom.css">
+</head>
+
+<body>
+    <div class="deck-container">
+
+        <!-- Begin slides. Just make elements with a class of slide. -->
+
+        <section class="slide">
+
+            <h2>VersaSuite</h2>
+            <p>
+                <cite>Development lifecycle recommendations</cite>
+            </p>
+            <img src="./images/sdlc.jpg" style="border-radius: 75px;" />
+
+        </section>
+
+        <section class="slide">
+            <h2>Planning, Analysis and Design</h2>
+            <h2>Project Management</h2>
+            <p>Bugzilla is great for bug tracking, but subpar for project management</p>
+            <ul>
+                <li>A roadmap with a determined time frame for sprints, clearly lays out expectations</li>
+                <li>large feature request need to be broken out and clearly defined</li>
+                <li>Task time estimations help provide meaningful burn down of progress made during a sprint</li>
+                <li>With any task sometimes complications can arise and esitmation will need to be extented</li>
+                <li>The current dailys provide no outward look on developement time. %today & %total are just guesses</li>
+            </ul>
+
+            <h2>Recommendation</h2>
+            <ul>
+                <li>Utilize TFS project management or bring in another project management solution like Asana</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Implementation</h2>
+            <ul>
+                <li>Daily standups are great for sharing complications, goals and identify as a team</li>
+                <li>A clear understanding of where a task lies is better entered into a project management solution</li>
+                <li>Development pratices should be standardized as much as possible</li>
+            </ul>
+
+
+            <h2>Recommendation</h2>
+            <ul>
+                <li>Utilize standups as ensuring developers are seeking help when they need it</li>
+                <li>Implement linting on all developer machines to enforce coding standards</li>
+                <li>Ensure any new component used is discussed any used consistently</li>
+                <li>Developers should have a consist UI library for charts,grids,inputs etc </li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Code Reuse</h2>
+            <ul>
+                <li>With a application like VersaSuite and the very complicated buisness logic code reuse if so important.</li>
+                <li> logic is being copied and pasted from different projects.</li>
+                <li>Over time the inconsistency will lead to code rott and extended development time</li>
+                <li>Additionally if consistency is important when you need to change the look of a component or fix a bug now
+                    you need to do this in multiple places.
+                </li>
+            </ul>
+
+
+            <h2>Recommendation</h2>
+            <ul>
+                <li>Incapsulate any components or libraries into either npm modules or nuget packages hosted on TFS</p>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Source Control</h2>
+            <ul>
+                <li>Currently all the code is hosted in one big repository.</li>
+                <li>Continous Integration, automated testing and automated building are by standard done on check-in.</li>
+                <li>When a check-in is made it could apply to any project</li>
+            </ul>
+
+
+            <h2>Recommendation</h2>
+            <ul>
+                <li>Each project should be broken into its own repository</p>
+            </ul>
+        </section>
+
+        <!-- End slides. -->
+
+        <!-- Begin extension snippets. Add or remove as needed. -->
+
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+            <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        </div>
+
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span> /
+            <span class="deck-status-total"></span>
+        </p>
+
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+            <label for="goto-slide">Go to slide:</label>
+            <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+            <datalist id="goto-datalist"></datalist>
+            <input type="submit" value="Go">
+        </form>
+
+        <!-- End extension snippets. -->
+    </div>
+
+    <!-- Required JS files. -->
+    <script src="jquery.min.js"></script>
+    <script src="core/deck.core.js"></script>
+
+    <!-- Extension JS files. Add or remove as needed. -->
+    <script src="extensions/menu/deck.menu.js"></script>
+    <script src="extensions/goto/deck.goto.js"></script>
+    <script src="extensions/status/deck.status.js"></script>
+    <script src="extensions/navigation/deck.navigation.js"></script>
+    <script src="extensions/scale/deck.scale.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+        $(function () {
+            $.deck('.slide');
+        });
+    </script>
+</body>
+
+</html>
